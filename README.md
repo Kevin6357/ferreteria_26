@@ -191,7 +191,7 @@ Falta integrar
 
  
 ### Modelo Relacional (MR)
-![MODELO_RELACIONAL](https://1drv.ms/i/c/80fe059460efbb4b/IQBHFNr90_DIQJzLnLox7HUxAYISOJ1cMCnY5nQKQ1GnrKs?e=FSDPaj)
+![MODELO_RELACIONAL](https://1drv.ms/i/c/80fe059460efbb4b/IQBHFNr90_DIQJzLnLox7HUxAYISOJ1cMCnY5nQKQ1GnrKs?e=FSDPaj.png)
 
 ### Cardinalidades
 
