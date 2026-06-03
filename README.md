@@ -77,70 +77,107 @@ Los tres casos se pueden resolver con un sistema de seguimiento en tiempo real q
 CREATE DATABASE ferre_bayron;
 USE ferre_bayron;
 
-create table usuario(
-id_usuario int auto_increment primary key,
-roles enum('admin', 'superadmin') default 'admin',
-nombre_usuario varchar (150) not null,
-clave varchar(250) not null
+CREATE TABLE usuario(
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    roles ENUM('admin','superadmin') DEFAULT 'admin',
+    nombre_usuario VARCHAR(150) NOT NULL,
+    clave VARCHAR(250) NOT NULL
 );
 
-CREATE TABLE proveedores (
+CREATE TABLE cargo(
+    id_cargo INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_cargo VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE empleado(
+    id_empleado INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    dni VARCHAR(8) UNIQUE NOT NULL,
+    celular VARCHAR(20),
+    correo VARCHAR(100),
+    id_cargo INT,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cargo) REFERENCES cargo(id_cargo)
+);
+
+CREATE TABLE asistencia(
+    id_asistencia INT AUTO_INCREMENT PRIMARY KEY,
+    id_empleado INT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
+);
+
+CREATE TABLE proveedores(
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(20),
     direccion VARCHAR(150)
 );
 
-CREATE TABLE compras (
+CREATE TABLE compras(
     id_compra INT AUTO_INCREMENT PRIMARY KEY,
     id_proveedor INT NOT NULL,
-    fecha_compra DATE NOT NULL,
+    fecha_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     total DECIMAL(10,2) NOT NULL,
     FOREIGN KEY (id_proveedor) REFERENCES proveedores(id)
 );
 
-CREATE TABLE recibidos (
+CREATE TABLE recibidos(
     id_recibido INT AUTO_INCREMENT PRIMARY KEY,
     id_compra INT NOT NULL,
-    fecha_recibido DATE NOT NULL,
+    fecha_recibido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     estado VARCHAR(50),
     FOREIGN KEY (id_compra) REFERENCES compras(id_compra)
 );
 
-CREATE TABLE devoluciones (
+CREATE TABLE devoluciones(
     id_devolucion INT AUTO_INCREMENT PRIMARY KEY,
     id_compra INT NOT NULL,
     motivo VARCHAR(200),
-    fecha_devolucion DATE NOT NULL,
+    fecha_devolucion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_compra) REFERENCES compras(id_compra)
 );
 
-CREATE TABLE stocks (
+CREATE TABLE stocks(
     id_stock INT AUTO_INCREMENT PRIMARY KEY,
     producto VARCHAR(100) NOT NULL,
     cantidad INT NOT NULL,
     precio DECIMAL(10,2) NOT NULL
 );
 
+INSERT INTO usuario(roles,nombre_usuario,clave)
+VALUES
+('superadmin','admin','123456');
+
+INSERT INTO cargo(nombre_cargo)
+VALUES
+('Administrador'),
+('Empleado');
+
+INSERT INTO empleado(nombre,apellido,dni,celular,correo,id_cargo)
+VALUES
+('Kevin','Pinedo Benites','76543210','987654321','kevin@gmail.com',1),
+('Maria','Gomez Rios','74125896','912345678','maria@gmail.com',2);
 
 INSERT INTO proveedores(nombre,telefono,direccion)
 VALUES
 ('Juan','987654321','Pucallpa'),
 ('Carlos','999888777','Lima');
 
-INSERT INTO compras(id_proveedor,fecha_compra,total)
+INSERT INTO compras(id_proveedor,total)
 VALUES
-(1,'2026-01-12',250.00),
-(2,'2026-01-15',500.00);
+(1,250.00),
+(2,500.00);
 
-INSERT INTO recibidos(id_compra,fecha_recibido,estado)
+INSERT INTO recibidos(id_compra,estado)
 VALUES
-(1,'2026-01-13','Recibido'),
-(2,'2026-01-16','Pendiente');
+(1,'Recibido'),
+(2,'Pendiente');
 
-INSERT INTO devoluciones(id_compra,motivo,fecha_devolucion)
+INSERT INTO devoluciones(id_compra,motivo)
 VALUES
-(1,'Producto defectuoso','2026-01-14');
+(1,'Producto defectuoso');
 
 INSERT INTO stocks(producto,cantidad,precio)
 VALUES
@@ -148,3 +185,14 @@ VALUES
 ('Taladro',20,180.00),
 ('Destornillador',100,12.00);
 ```
+
+### Diagrama Entidad-Relacion (DER)
+Falta integrar
+
+ 
+### Modelo Relacional (MR)
+![MODELO_RELACIONAL](https://raw.githubusercontent.com/ojitoslanda/testing/refs/heads/master/img/db.png)
+
+### Cardinalidades
+
+Las cardinalidades describen cuántos registros de una tabla se relacionan con cuántos de otra.
