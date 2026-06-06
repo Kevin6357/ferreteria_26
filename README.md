@@ -1,3 +1,7 @@
+## TRELLO
+Más info en [mi tablero de trello](https://trello.com/invite/b/6a20e7c8c18ed8b902290ab0/ATTIaf08248eedba4ddd54416533ffdd3016124E7704/ferre-bayron)
+![trello](https://i.imgur.com/7IBxmV2.png)
+
 # Sistema de Gestión de Inventario — Ferretería Bayron
 **RUC:** 20614052903
 
@@ -40,6 +44,118 @@ Sí. La información necesaria ya existe dentro del negocio; solo falta un siste
 El sistema cubre únicamente la gestión interna del inventario de Ferretería Bayron. No incluye ventas, facturación ni manejo de proveedores (al menos por ahora).
 
 ---
+
+
+## Estructura del proyecto
+```
+employee-attendance-system/
+│
+├── app/
+│   │
+│   ├── controllers/
+│   │     DashboardController.php
+│   │     LoginController.php
+│   │     LogoutController.php
+│   │     EmpleadosController.php
+│   │     AsistenciasController.php
+│   │     ComprasController.php
+│   │     RecibidosController.php
+│   │     DevolucionesController.php
+│   │     StocksController.php
+│   │     UsuariosController.php
+│   │
+│   ├── models/
+│   │     Usuario.php
+│   │     Cargo.php
+│   │     Empleado.php
+│   │     Asistencia.php
+│   │     Compra.php
+│   │     Proveedor.php
+│   │     Recibido.php
+│   │     Devolucion.php
+│   │     Stock.php
+│   │
+│   ├── views/
+│   │
+│   │   ├── layouts/
+│   │   │      sidebar-dashboard.php
+│   │   │
+│   │   ├── dashboard/
+│   │   │      index.php
+│   │   │
+│   │   ├── login/
+│   │   │      index.php
+│   │   │
+│   │   ├── empleados/
+│   │   │      registrar.php
+│   │   │      editar.php
+│   │   │      reportes.php
+│   │   │
+│   │   ├── asistencias/
+│   │   │      index.php
+│   │   │      reportes.php
+│   │   │      ejemplo_hoja.php
+│   │   │
+│   │   ├── compras/
+│   │   │      index.php
+│   │   │      editar.php
+│   │   │      reportes.php
+│   │   │      proveedores.php
+│   │   │
+│   │   ├── recibidos/
+│   │   │      registrar.php
+│   │   │      historial.php
+│   │   │
+│   │   ├── devoluciones/
+│   │   │      registrar.php
+│   │   │      reportes.php
+│   │   │
+│   │   ├── stocks/
+│   │   │      ver.php
+│   │   │      movimientos.php
+│   │   │      productos_bajos.php
+│   │   │
+│   │   └── usuarios/
+│   │          registrar.php
+│   │          roles.php
+│   │          reportes.php
+│   │
+│   ├── core/
+│   │      App.php
+│   │      Controller.php
+│   │      Database.php
+│   │
+│   ├── config/
+│   │      config.php
+│   │
+│   └── index.php
+│
+├── public/
+│   │
+│   ├── css/
+│   │      dashboard.css
+│   │      login.css
+│   │      asistencias-main.css
+│   │
+│   ├── js/
+│   │      dashboard.js
+│   │      dropdown.js
+│   │      asistencias-main.js
+│   │
+│   ├── image/
+│   │      foto_prueba.png
+│   │      logo.png
+│   │
+│   └── index.php
+│
+├── .htaccess
+│
+└── Base de Datos
+       ferre_bayron
+```
+
+### DIAGRAMA DE FIGMA UI/UX
+[mi Figma](https://www.figma.com/design/HzyK6KJWlgHdJMf9yM2fJV/Untitled?node-id=0-1&t=FJHwaiwFej2DPhvA-1)
 
 ## Análisis
 
@@ -193,6 +309,14 @@ Falta integrar
 ### Modelo Relacional (MR)
 ![MODELO_RELACIONAL](https://cdn.phototourl.com/free/2026-06-03-f08342cb-cfc3-42d5-bd37-d7ca8e920713.png)
 
-### Cardinalidades
+### Logo de la Empresa
+![Logo](https://cdn.phototourl.com/free/2026-06-06-6aa14121-bef4-4704-a1a8-1f08fa8d1348.png)
 
-Las cardinalidades describen cuántos registros de una tabla se relacionan con cuántos de otra.
+### Sotfware en el negocio
+![Software](https://i.imgur.com/uR0QanP.jpeg)
+![Software](https://i.imgur.com/9dVdjHJ.jpeg)
+
+
+
+
+
